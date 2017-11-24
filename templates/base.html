@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.0/css/tachyons.min.css"/>
+  <title>{{ .Title }}</title>
+</head>
+<body data-vue="{{ .Data }}" class="avenir">
+  {{range .Messages}}
+  <div class="flex items-center justify-between pa3 bg-{{.Color}} navy">
+    <span class="lh-title ml3 near-white">{{.Text}}</span>
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32" class="close_message">
+      <line x1="10" y1="10" x2="22" y2="22" style="stroke:#f4f4f4;stroke-width:2" />
+      <line x1="22" y1="10" x2="10" y2="22" style="stroke:#f4f4f4;stroke-width:2" />
+    </svg>
+  </div>
+  {{end}}
+  <div class="pa3">
+    {{template "content" .}}
+  </div>
+  <script>
+    function closeMessage() {
+      this.parentElement.remove();
+    }
+    const $close = document.getElementsByClassName('close_message');
+    [...$close].forEach(item => {
+      item.addEventListener('click', closeMessage);
+    });
+  </script>
+</body>

@@ -1,0 +1,13 @@
+{{define "content"}}
+  <h1>ToDo</h1>
+  <ul>
+    {{range .ToDos}}
+      {{if .Finished}}
+        <li class="done">{{.Text}}</li>
+      {{else}}
+        <li>{{.Text}}</li>
+      {{end}}
+    {{end}}
+  </ul>
+  <a href="/todo/edit">Add ToDo</a>
+{{end}}

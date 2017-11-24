@@ -1,0 +1,29 @@
+version: "2"
+
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=myDb 
+  vendor: 
+    build: .
+    volumes:
+      - .:/go/src/test
+    working_dir: /go/src/test
+    command: dep ensure
+  app:
+    build: .
+    volumes:
+      - .:/go/src/test
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - vendor
+    working_dir: /go/src/test
+    command: realize start

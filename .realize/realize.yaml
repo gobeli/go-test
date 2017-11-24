@@ -1,0 +1,25 @@
+settings:
+  legacy:
+    force: true
+    interval: 200ms
+server:
+  status: false
+  open: false
+  port: 5001
+  host: localhost
+schema:
+- name: server
+  path: .
+  commands:
+    install:
+      status: true
+    run: true
+  watcher:
+    paths:
+    - /
+    extensions:
+    - go
+    - html
+    ignored_paths:
+    - /vendor
+    - /db
