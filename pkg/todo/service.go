@@ -1,8 +1,8 @@
 package todo
 
 import (
+	"github.com/gobeli/go-test/pkg/shared"
 	"github.com/jinzhu/gorm"
-	"test/pkg/shared"
 )
 
 type MySqlToDoService struct {
@@ -15,9 +15,9 @@ func (service MySqlToDoService) GetToDos() ([]ToDo, error) {
 	return todos, shared.StandardizeError(err)
 }
 
-func (service MySqlToDoService) GetToDo(id uint) { }
-func (service MySqlToDoService) CreateToDo(toDo ToDo) (error) {
+func (service MySqlToDoService) GetToDo(id uint) {}
+func (service MySqlToDoService) CreateToDo(toDo ToDo) error {
 	err := service.DB.Create(&toDo).Error
 	return err
 }
-func (service MySqlToDoService) RemoveToDo(id uint) { }
+func (service MySqlToDoService) RemoveToDo(id uint) {}

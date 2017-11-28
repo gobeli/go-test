@@ -9,21 +9,21 @@ services:
       - ./db:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=myDb 
-  vendor: 
+      - MYSQL_DATABASE=myDb
+  vendor:
     build: .
     volumes:
-      - .:/go/src/test
-    working_dir: /go/src/test
+      - .:/go/src/github.com/gobeli/go-test
+    working_dir: /go/src/github.com/gobeli/go-test
     command: dep ensure
   app:
     build: .
     volumes:
-      - .:/go/src/test
+      - .:/go/src/github.com/gobeli/go-test
     ports:
       - "8080:8080"
     depends_on:
       - db
       - vendor
-    working_dir: /go/src/test
+    working_dir: /go/src/github.com/gobeli/go-test
     command: realize start

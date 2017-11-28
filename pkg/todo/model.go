@@ -1,6 +1,6 @@
 package todo
 
-import "test/pkg/shared"
+import "github.com/gobeli/go-test/pkg/shared"
 
 type ToDo struct {
 	ID				uint
